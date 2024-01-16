@@ -5,8 +5,10 @@
   |============================
 */
 @import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
+/* @import url('./vite-promo.css'); */
+/* @import url('./header.css'); */
+@import "izitoast/dist/css/iziToast.min.css";
+@import "simplelightbox/dist/simple-lightbox.min.css";
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
