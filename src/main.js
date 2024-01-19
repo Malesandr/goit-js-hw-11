@@ -3,24 +3,34 @@ import SimpleLightbox from "simplelightbox";
 
 const apiKey = '41862655-84ddc1d5da0620d7ed5964b7a';
 
-const loader1 = document.querySelector('.loader');
-loader1.style.display = 'none';
+const loader = document.querySelector('.loader');
+loader.style.display = 'none';
 
-const getImg = async (query) => {
-    loader1.style.display = 'block';
+
+const getImg = async (param) => {
+    loader.style.display = 'block';
     try {
-        const result = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(query)}&image_type=photo&orientation=horizontal&safesearch=true`);
+        const result = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(param)}&image_type=photo&orientation=horizontal&safesearch=true`);
         if (!result.ok) {
             throw new Error(result.status);
         }
         return await result.json();
     } finally {
-        loader1.style.display = 'none';
+        loader.style.display = 'none';
     }
 };
 
+
 const form = document.querySelector('.form');
 const gallery = document.querySelector('.gallery');
+
+const options = {
+    captionsData: "title",
+    captionDelay: 250
+  }
+
+const lightbox = new SimpleLightbox('.gallery a', options);
+
 
 form.addEventListener('submit', (err) => {
     err.preventDefault();
@@ -48,10 +58,10 @@ form.addEventListener('submit', (err) => {
                         alt="${hit.tags}"
                     />
                     <ul class="list">
-                        <li class="list-item"><h3>likes</h3><span>${hit.likes}</span></li>
-                        <li class="list-item"><h3>views</h3><span>${hit.views}</span></li>
-                        <li class="list-item"><h3>comments</h3><span>${hit.comments}</span></li>
-                        <li class="list-item"><h3>downloads</h3><span>${hit.downloads}</span></li>
+                        <li><p class='list-item'>💗Likes<span>${hit.likes}</span></p></li>
+                        <li><p class='list-item'>👁️Views<span>${hit.views}</span></p></li>
+                        <li><p class='list-item'>💬Comments<span>${hit.comments}</span></p></li>
+                        <li><p class='list-item'>💌Downloads<span>${hit.downloads}</span></p></li>
                     </ul>
                 </a>
             </li>`
@@ -59,6 +69,7 @@ form.addEventListener('submit', (err) => {
 
             gallery.insertAdjacentHTML(`beforeend`, markup);
             lightbox.refresh();
+            form.reset();
         })
 
         .catch(error => {
@@ -72,11 +83,3 @@ form.addEventListener('submit', (err) => {
           });
     
 });
-
-const options = {
-    captionsData: "title",
-    captionDelay: 250
-  }
-
-const lightbox = new SimpleLightbox('.gallery a', options);
-

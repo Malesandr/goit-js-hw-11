@@ -5,8 +5,6 @@
   |============================
 */
 @import url('./reset.css');
-/* @import url('./vite-promo.css'); */
-/* @import url('./header.css'); */
 @import "izitoast/dist/css/iziToast.min.css";
 @import "simplelightbox/dist/simple-lightbox.min.css";
 
@@ -19,23 +17,20 @@
   color: #242424;
   background-color: rgba(255, 255, 255, 0.87);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
 
 .loader {
-  width: 24px;
-  height: 24px;
-  border: 5px solid #fff;
-  border-bottom-color: #4e75ff;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  border: 5px solid #4e75ff;
+  border-bottom-color: transparent;
   border-radius: 50%;
-  display: inline-block;
+  position: relative;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+  display: none;
 }
 
 button {
